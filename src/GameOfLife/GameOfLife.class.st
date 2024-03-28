@@ -9,7 +9,8 @@ Class {
 		'nextGeneration',
 		'cellSize',
 		'numberGeneration',
-		'announcer'
+		'announcer',
+		'isRunning'
 	],
 	#category : #'GameOfLife-Core'
 }
@@ -230,6 +231,16 @@ GameOfLife >> mouseDown: anEvent [
 	      self changed.
 ]
 
+{ #category : #lifecycle }
+GameOfLife >> play [
+	isRunning := true.
+	[ [ isRunning ]
+		whileTrue: [ self step.
+			500 milliSeconds wait ] ]
+		forkAt: Processor userBackgroundPriority
+		named: 'GameOfLife'
+]
+
 { #category : #stepping }
 GameOfLife >> step [
 	"Verifies the rules of the Game Of Life"
@@ -245,6 +256,11 @@ GameOfLife >> step [
       nextGeneration := tmp.
       numberGeneration := numberGeneration + 1.
       self announceNextGeneration.
+]
+
+{ #category : #lifecycle }
+GameOfLife >> stop [
+	isRunning := false.
 ]
 
 { #category : #view }

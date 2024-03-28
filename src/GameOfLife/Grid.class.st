@@ -62,9 +62,13 @@ Grid >> subscribeToModelAnnouncements [
 
 { #category : #initialization }
 Grid >> updateWithContents: anArray2D [
-	| cells |
-	cells := anArray2D
-			collect: [ :each | each = 1 ifTrue: [ AliveGridCell new ] ifFalse: [ DeadGridCell new ] ].
-	self removeChildren.
-	self addChildren: cells asArray
+	| newGenerationCells |
+	newGenerationCells := (anArray2D
+			collect: [ :each | each = 1 ifTrue: [ AliveGridCell new ] ifFalse: [ DeadGridCell new ] ])
+			asArray.
+	self children
+		doWithIndex: [ :aChild :index | 
+			(newGenerationCells at: index) = aChild
+				ifFalse: [ self removeChild: aChild.
+					self addChild: (newGenerationCells at: index) at: index ] ]
 ]
