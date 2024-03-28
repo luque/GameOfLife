@@ -55,7 +55,10 @@ GameOfLife class >> blinkerExample [
 			initializeWithRows: 10
 			columns: 10
 			ofSize: 5 @ 5.
-	game add: self blinker atRow: 3 column: 5.
+	game
+		add: self blinker
+		atRow: 3
+		column: 5.
 	^ game view
 ]
 
@@ -105,7 +108,7 @@ GameOfLife >> announceNextGeneration [
 
 { #category : #accesing }
 GameOfLife >> announcer [
-	announcer ifNil: [ announcer := Announcer new ]
+	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #view }
@@ -188,7 +191,6 @@ GameOfLife >> getNextGenerationFor: row column: column [
 
 	neighbors := topLeft + top + left + right + topRight + bottomRight + bottom
 			+ bottomLeft.
-	self halt.
 
 	^ (currentGeneration at: row at: column) = 1
 		ifTrue: [ neighbors < 2 | (neighbors > 3) ifTrue: [ 0 ] ifFalse: [ 1 ] ]

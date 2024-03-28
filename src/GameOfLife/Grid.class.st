@@ -57,7 +57,7 @@ Grid >> onNextGeneration: aGameOfLifeNextGenerationAnnouncement [
 
 { #category : #'event - handling' }
 Grid >> subscribeToModelAnnouncements [
-	model announcer when: #GameOfLifeNextGeneration send: #onNextGeneration: to: self
+	model announcer when: GameOfLifeNextGeneration send: #onNextGeneration: to: self
 ]
 
 { #category : #initialization }
