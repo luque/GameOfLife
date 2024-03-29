@@ -65,6 +65,24 @@ GameOfLife class >> emptyGame [
 		ofSize: 5 @ 5
 ]
 
+{ #category : #'life pattern - oscillators' }
+GameOfLife class >> glider [
+	^ Array2D
+		fromCollection: {
+				#(0 1 0).
+				#(0 0 1).
+				#(1 1 1)}
+]
+
+{ #category : #accessing }
+GameOfLife class >> gliderExample [
+	<gtExample>
+	| game |
+	game := self emptyGame.
+	game add: self glider atRow: 1 column: 1.
+	^ game view
+]
+
 { #category : #example }
 GameOfLife class >> oscillatorsExample [
 	<gtExample>
