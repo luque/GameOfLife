@@ -1,10 +1,10 @@
 Class {
-	#name : #ReproductionRule,
-	#superclass : #NeighborhoodConstraint,
+	#name : #GoLReproductionRule,
+	#superclass : #GoLNeighborhoodConstraint,
 	#category : #'GameOfLife-Rules'
 }
 
 { #category : #initalization }
-ReproductionRule >> initialize [
+GoLReproductionRule >> initialize [
 	checkBlock := [ :numberOfAliveNeighbors :isAlive | isAlive or: [ isAlive not and: [ (numberOfAliveNeighbors = 3) not ] ] ]
 ]

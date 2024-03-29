@@ -1,11 +1,11 @@
 Class {
-	#name : #NeighborhoodConstraint,
-	#superclass : #GenerationConstraint,
+	#name : #GoLNeighborhoodConstraint,
+	#superclass : #GoLGenerationConstraint,
 	#category : #'GameOfLife-Core'
 }
 
 { #category : #'satisfy - constraints' }
-NeighborhoodConstraint >> satisfy: aGenerationAsBlock2D atRow: rowNumber column: columnNumber [
+GoLNeighborhoodConstraint >> satisfy: aGenerationAsBlock2D atRow: rowNumber column: columnNumber [
 	| numberAliveNeighbors isAliveCell |
 	numberAliveNeighbors := aGenerationAsBlock2D numberAliveNeighborsAtRow: rowNumber column: columnNumber.
 	isAliveCell := aGenerationAsBlock2D isAliveAtRow: rowNumber column: columnNumber.

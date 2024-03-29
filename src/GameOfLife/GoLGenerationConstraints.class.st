@@ -1,6 +1,6 @@
 Class {
-	#name : #GenerationConstraints,
-	#superclass : #Constraint,
+	#name : #GoLGenerationConstraints,
+	#superclass : #GoLConstraint,
 	#instVars : [
 		'constraints'
 	],
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #'adding - constraint' }
-GenerationConstraints >> add: aConstraint [
+GoLGenerationConstraints >> add: aConstraint [
 	constraints add: aConstraint
 ]
 
 { #category : #initialization }
-GenerationConstraints >> initialize [
+GoLGenerationConstraints >> initialize [
 	constraints := OrderedCollection empty
 ]
 
 { #category : #'satisfy - constraints' }
-GenerationConstraints >> satisfy: aGenerationAsBlock2D atRow: rowNumber column: columnNumber [
+GoLGenerationConstraints >> satisfy: aGenerationAsBlock2D atRow: rowNumber column: columnNumber [
 	constraints ifEmpty: [ ^ true ].
 	^ constraints
 		allSatisfy: [ :aConstraint | 

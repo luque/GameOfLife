@@ -1,5 +1,5 @@
 Class {
-	#name : #ConstraintsNotSatisfiable,
+	#name : #GoLConstraintsNotSatisfiable,
 	#superclass : #Exception,
 	#category : #'GameOfLife-Exceptions'
 }

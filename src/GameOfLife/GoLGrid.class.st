@@ -1,5 +1,5 @@
 Class {
-	#name : #Grid,
+	#name : #GoLGrid,
 	#superclass : #BlElement,
 	#instVars : [
 		'model'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-Grid class >> backgroundColor [
+GoLGrid class >> backgroundColor [
 	^ Color veryVeryLightGray
 ]
 
 { #category : #'instance - creation' }
-Grid class >> withContents: anArray2D ofSize: aPoint [
+GoLGrid class >> withContents: anArray2D ofSize: aPoint [
 	^ self new initializeWithContents: anArray2D ofSize: aPoint
 ]
 
 { #category : #accessing }
-Grid >> initialize [
+GoLGrid >> initialize [
 	super initialize.
 	self
 		background: self class backgroundColor;
@@ -29,10 +29,10 @@ Grid >> initialize [
 ]
 
 { #category : #initialization }
-Grid >> initializeWithContents: anArray2D ofSize: aPoint [
+GoLGrid >> initializeWithContents: anArray2D ofSize: aPoint [
 	| cells |
 	cells := anArray2D
-			collect: [ :each | each = 1 ifTrue: [ AliveGridCell new ] ifFalse: [ DeadGridCell new ] ].
+			collect: [ :each | each = 1 ifTrue: [ GoLAliveGridCell new ] ifFalse: [ GoLDeadGridCell new ] ].
 	^ self
 		layoutDo: [ :aGridLayout | aGridLayout rowCount: anArray2D rowCount ];
 		addChildren: cells asArray;
@@ -40,31 +40,31 @@ Grid >> initializeWithContents: anArray2D ofSize: aPoint [
 ]
 
 { #category : #accessing }
-Grid >> model [
+GoLGrid >> model [
 	^ model
 ]
 
 { #category : #accessing }
-Grid >> model: aModel [
+GoLGrid >> model: aModel [
 	model := aModel.
 	self subscribeToModelAnnouncements.
 ]
 
 { #category : #'event - handling' }
-Grid >> onNextGeneration: aGameOfLifeNextGenerationAnnouncement [
+GoLGrid >> onNextGeneration: aGameOfLifeNextGenerationAnnouncement [
 	self updateWithContents: self model currentGeneration
 ]
 
 { #category : #'event - handling' }
-Grid >> subscribeToModelAnnouncements [
-	model announcer when: GameOfLifeNextGeneration send: #onNextGeneration: to: self
+GoLGrid >> subscribeToModelAnnouncements [
+	model announcer when: GoLGameOfLifeNextGeneration send: #onNextGeneration: to: self
 ]
 
 { #category : #initialization }
-Grid >> updateWithContents: anArray2D [
+GoLGrid >> updateWithContents: anArray2D [
 	| newGenerationCells |
 	newGenerationCells := (anArray2D
-			collect: [ :each | each = 1 ifTrue: [ AliveGridCell new ] ifFalse: [ DeadGridCell new ] ])
+			collect: [ :each | each = 1 ifTrue: [ GoLAliveGridCell new ] ifFalse: [ GoLDeadGridCell new ] ])
 			asArray.
 	self children
 		doWithIndex: [ :aChild :index | 

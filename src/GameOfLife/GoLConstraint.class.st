@@ -1,10 +1,10 @@
 Class {
-	#name : #Constraint,
+	#name : #GoLConstraint,
 	#superclass : #Object,
 	#category : #'GameOfLife-Core'
 }
 
 { #category : #'satisfy - constraints' }
-Constraint >> satisfy: aGenerationAsBlock2D atRow: rowNumber column: columnNumber [
+GoLConstraint >> satisfy: aGenerationAsBlock2D atRow: rowNumber column: columnNumber [
 	self subclassResponsibility
 ]

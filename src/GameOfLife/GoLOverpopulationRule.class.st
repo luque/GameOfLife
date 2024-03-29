@@ -1,10 +1,10 @@
 Class {
-	#name : #OverpopulationRule,
-	#superclass : #NeighborhoodConstraint,
+	#name : #GoLOverpopulationRule,
+	#superclass : #GoLNeighborhoodConstraint,
 	#category : #'GameOfLife-Rules'
 }
 
 { #category : #initalization }
-OverpopulationRule >> initialize [
+GoLOverpopulationRule >> initialize [
 	checkBlock := [ :numberAliveNeighbors :isAlive | isAlive not or: [isAlive and: [ numberAliveNeighbors <= 3 ] ] ]
 ]

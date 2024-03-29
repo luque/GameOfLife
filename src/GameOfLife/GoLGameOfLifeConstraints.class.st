@@ -1,6 +1,6 @@
 Class {
-	#name : #GameOfLifeConstraints,
-	#superclass : #GameOfLife,
+	#name : #GoLGameOfLifeConstraints,
+	#superclass : #GoLGameOfLife,
 	#instVars : [
 		'constraints'
 	],
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #rules }
-GameOfLifeConstraints class >> classicRules [
+GoLGameOfLifeConstraints class >> classicRules [
 	| rules |
-	rules := GenerationConstraints new.
-	rules add: ReproductionRule new.
-	rules add: OverpopulationRule new.
-	rules add: UnderpopulationRule new.
+	rules := GoLGenerationConstraints new.
+	rules add: GoLReproductionRule new.
+	rules add: GoLOverpopulationRule new.
+	rules add: GoLUnderpopulationRule new.
 	^ rules
 ]
 
 { #category : #example }
-GameOfLifeConstraints class >> emptyGame [
+GoLGameOfLifeConstraints class >> emptyGame [
 	| game |
 	game := self withClassicRules.
 	game initializeWithRows: 10
@@ -28,17 +28,17 @@ GameOfLifeConstraints class >> emptyGame [
 ]
 
 { #category : #'instance - creation' }
-GameOfLifeConstraints class >> withClassicRules [
+GoLGameOfLifeConstraints class >> withClassicRules [
 	^ self new add: self classicRules; yourself
 ]
 
 { #category : #'add - constraints' }
-GameOfLifeConstraints >> add: aConstraint [
+GoLGameOfLifeConstraints >> add: aConstraint [
 	constraints add: aConstraint
 ]
 
 { #category : #generations }
-GameOfLifeConstraints >> getNextGenerationFor: row column: column [
+GoLGameOfLifeConstraints >> getNextGenerationFor: row column: column [
 	"Verifies the Game Of Life constraints"
 
 	| alternativeStateGeneration alternativeState currentState |
@@ -59,11 +59,11 @@ GameOfLifeConstraints >> getNextGenerationFor: row column: column [
 				atRow: row
 				column: column)
 				ifTrue: [ ^ alternativeState ]
-				ifFalse: [ ConstraintsNotSatisfiable signal ] ]
+				ifFalse: [ GoLConstraintsNotSatisfiable signal ] ]
 ]
 
 { #category : #initalization }
-GameOfLifeConstraints >> initialize [
+GoLGameOfLifeConstraints >> initialize [
 	super initialize.
-	constraints := GenerationConstraints new.
+	constraints := GoLGenerationConstraints new.
 ]

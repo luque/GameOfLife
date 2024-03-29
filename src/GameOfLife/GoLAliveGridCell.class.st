@@ -1,15 +1,15 @@
 Class {
-	#name : #AliveGridCell,
-	#superclass : #GridCell,
+	#name : #GoLAliveGridCell,
+	#superclass : #GoLGridCell,
 	#category : #'GameOfLife-View'
 }
 
 { #category : #accessing }
-AliveGridCell >> backgroundColor [
+GoLAliveGridCell >> backgroundColor [
 	^ Color lightBlue
 ]
 
 { #category : #accessing }
-AliveGridCell >> isAlive [
+GoLAliveGridCell >> isAlive [
 	^ true
 ]

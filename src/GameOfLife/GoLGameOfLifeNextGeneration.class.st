@@ -1,5 +1,5 @@
 Class {
-	#name : #GameOfLifeNextGeneration,
+	#name : #GoLGameOfLifeNextGeneration,
 	#superclass : #Announcement,
 	#instVars : [
 		'generation'
@@ -8,18 +8,18 @@ Class {
 }
 
 { #category : #'instance - creation' }
-GameOfLifeNextGeneration class >> generation: aNumber [
+GoLGameOfLifeNextGeneration class >> generation: aNumber [
 	^ self new
 		generation: aNumber;
 		yourself
 ]
 
 { #category : #accessing }
-GameOfLifeNextGeneration >> generation [
+GoLGameOfLifeNextGeneration >> generation [
 	^ generation
 ]
 
 { #category : #accessing }
-GameOfLifeNextGeneration >> generation: anObject [
+GoLGameOfLifeNextGeneration >> generation: anObject [
 	generation := anObject
 ]

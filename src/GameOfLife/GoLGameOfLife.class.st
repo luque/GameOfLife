@@ -1,5 +1,5 @@
 Class {
-	#name : #GameOfLife,
+	#name : #GoLGameOfLife,
 	#superclass : #Object,
 	#instVars : [
 		'rows',
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #'life pattern - oscillators' }
-GameOfLife class >> beacon [
+GoLGameOfLife class >> beacon [
 	^ Array2D
 		fromCollection: {
 		        #(0 0 0 0 0 0).
@@ -28,7 +28,7 @@ GameOfLife class >> beacon [
 ]
 
 { #category : #example }
-GameOfLife class >> beaconExample [
+GoLGameOfLife class >> beaconExample [
 	<gtExample>
 	| game |
 	game := self emptyGame.
@@ -37,7 +37,7 @@ GameOfLife class >> beaconExample [
 ]
 
 { #category : #'life pattern - oscillators' }
-GameOfLife class >> blinker [
+GoLGameOfLife class >> blinker [
 	^ Array2D
 		fromCollection: {
 				#(0 0 0).
@@ -46,7 +46,7 @@ GameOfLife class >> blinker [
 ]
 
 { #category : #example }
-GameOfLife class >> blinkerExample [
+GoLGameOfLife class >> blinkerExample [
 	<gtExample>
 	| game |
 	game := self emptyGame.
@@ -58,7 +58,7 @@ GameOfLife class >> blinkerExample [
 ]
 
 { #category : #example }
-GameOfLife class >> emptyGame [
+GoLGameOfLife class >> emptyGame [
 	^ self new
 		initializeWithRows: 10
 		columns: 10
@@ -66,7 +66,7 @@ GameOfLife class >> emptyGame [
 ]
 
 { #category : #'life pattern - oscillators' }
-GameOfLife class >> glider [
+GoLGameOfLife class >> glider [
 	^ Array2D
 		fromCollection: {
 				#(0 1 0).
@@ -75,7 +75,7 @@ GameOfLife class >> glider [
 ]
 
 { #category : #accessing }
-GameOfLife class >> gliderExample [
+GoLGameOfLife class >> gliderExample [
 	<gtExample>
 	| game |
 	game := self emptyGame.
@@ -84,7 +84,7 @@ GameOfLife class >> gliderExample [
 ]
 
 { #category : #example }
-GameOfLife class >> oscillatorsExample [
+GoLGameOfLife class >> oscillatorsExample [
 	<gtExample>
 	| game |
 	game := self emptyGame.
@@ -94,7 +94,7 @@ GameOfLife class >> oscillatorsExample [
 ]
 
 { #category : #adding }
-GameOfLife >> add: aPatternAsArray2D atRow: rowNumber column: columnNumber [
+GoLGameOfLife >> add: aPatternAsArray2D atRow: rowNumber column: columnNumber [
 	currentGeneration
 		atRows: columnNumber
 		to: columnNumber + aPatternAsArray2D columnCount - 1
@@ -104,34 +104,34 @@ GameOfLife >> add: aPatternAsArray2D atRow: rowNumber column: columnNumber [
 ]
 
 { #category : #announcements }
-GameOfLife >> announce: anAnnouncement [
+GoLGameOfLife >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
 { #category : #announcements }
-GameOfLife >> announceNextGeneration [
-	self announce: (GameOfLifeNextGeneration generation: numberGeneration)
+GoLGameOfLife >> announceNextGeneration [
+	self announce: (GoLGameOfLifeNextGeneration generation: numberGeneration)
 ]
 
 { #category : #accesing }
-GameOfLife >> announcer [
+GoLGameOfLife >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #view }
-GameOfLife >> asElement [
-	^ (Grid withContents: currentGeneration ofSize: cellSize)
+GoLGameOfLife >> asElement [
+	^ (GoLGrid withContents: currentGeneration ofSize: cellSize)
 		model: self;
 		yourself
 ]
 
 { #category : #accessing }
-GameOfLife >> currentGeneration [
+GoLGameOfLife >> currentGeneration [
 	^ currentGeneration
 ]
 
 { #category : #generations }
-GameOfLife >> getNextGenerationFor: row column: column [
+GoLGameOfLife >> getNextGenerationFor: row column: column [
 	"Verifies the Game Of Life rules"
 
 	| neighbors |
@@ -143,7 +143,7 @@ GameOfLife >> getNextGenerationFor: row column: column [
 ]
 
 { #category : #initialization }
-GameOfLife >> initializeWithRows: rowCount columns: columnCount ofSize: aPoint [
+GoLGameOfLife >> initializeWithRows: rowCount columns: columnCount ofSize: aPoint [
 	"Sets the row and column count of the grid"
 
 	rows := rowCount.
@@ -157,7 +157,7 @@ GameOfLife >> initializeWithRows: rowCount columns: columnCount ofSize: aPoint [
 ]
 
 { #category : #lifecycle }
-GameOfLife >> play [
+GoLGameOfLife >> play [
 	isRunning := true.
 	[ [ isRunning ]
 		whileTrue: [ self step.
@@ -167,7 +167,7 @@ GameOfLife >> play [
 ]
 
 { #category : #stepping }
-GameOfLife >> step [
+GoLGameOfLife >> step [
 	"Verifies the rules of the Game Of Life"
 	| tmp |
 
@@ -184,11 +184,11 @@ GameOfLife >> step [
 ]
 
 { #category : #lifecycle }
-GameOfLife >> stop [
+GoLGameOfLife >> stop [
 	isRunning := false.
 ]
 
 { #category : #view }
-GameOfLife >> view [
+GoLGameOfLife >> view [
 	^ self asElement
 ]

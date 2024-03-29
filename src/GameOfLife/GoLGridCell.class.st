@@ -1,26 +1,26 @@
 Class {
-	#name : #GridCell,
+	#name : #GoLGridCell,
 	#superclass : #BlElement,
 	#category : #'GameOfLife-View'
 }
 
 { #category : #initialization }
-GridCell class >> alive [
+GoLGridCell class >> alive [
 "	^ AliveGridCell new"
 ]
 
 { #category : #initialization }
-GridCell class >> dead [
+GoLGridCell class >> dead [
 "	^ DeadGridCell new"
 ]
 
 { #category : #accessing }
-GridCell >> backgroundColor [
+GoLGridCell >> backgroundColor [
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
-GridCell >> initialize [
+GoLGridCell >> initialize [
 	super initialize.
 	self
 		background: self backgroundColor;
@@ -31,6 +31,6 @@ GridCell >> initialize [
 ]
 
 { #category : #accessing }
-GridCell >> isAlive [
+GoLGridCell >> isAlive [
 	self subclassResponsibility
 ]
