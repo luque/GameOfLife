@@ -33,7 +33,7 @@ GoLGameOfLife class >> beaconExample [
 	| game |
 	game := self emptyGame.
 	game add: self beacon atRow: 4 column: 3.
-	^ game view
+	^ game
 ]
 
 { #category : #'life pattern - oscillators' }
@@ -54,7 +54,7 @@ GoLGameOfLife class >> blinkerExample [
 		add: self blinker
 		atRow: 3
 		column: 5.
-	^ game view
+	^ game
 ]
 
 { #category : #example }
@@ -80,7 +80,7 @@ GoLGameOfLife class >> gliderExample [
 	| game |
 	game := self emptyGame.
 	game add: self glider atRow: 1 column: 1.
-	^ game view
+	^ game
 ]
 
 { #category : #example }
@@ -90,7 +90,7 @@ GoLGameOfLife class >> oscillatorsExample [
 	game := self emptyGame.
 	game add: self blinker atRow: 1 column: 1.
 	game add: self beacon atRow: 4 column: 4.
-	^ game view
+	^ game
 ]
 
 { #category : #adding }
@@ -142,6 +142,23 @@ GoLGameOfLife >> getNextGenerationFor: row column: column [
 		ifFalse: [ neighbors = 3 ifTrue: [ 1 ] ifFalse: [ 0 ] ]
 ]
 
+{ #category : #accessing }
+GoLGameOfLife >> gtLiveViewFor: aView [
+	<gtView>
+	^ aView explicit
+		title: 'Live';
+		stencil: [ self ];
+		actionButtonIcon: BrGlamorousVectorIcons play
+			action: [ :b :aTab | self play ];
+		actionButtonIcon: BrGlamorousVectorIcons spawn
+			action: [ :b :aTab | 
+				self step.
+				aTab viewContentElement phlow update ];
+		actionButtonIcon: BrGlamorousVectorIcons pause
+			action: [ :b :aTab | self stop ]
+						
+]
+
 { #category : #initialization }
 GoLGameOfLife >> initializeWithRows: rowCount columns: columnCount ofSize: aPoint [
 	"Sets the row and column count of the grid"
@@ -161,7 +178,7 @@ GoLGameOfLife >> play [
 	isRunning := true.
 	[ [ isRunning ]
 		whileTrue: [ self step.
-			500 milliSeconds wait ] ]
+			250 milliSeconds wait ] ]
 		forkAt: Processor userBackgroundPriority
 		named: 'GameOfLife'
 ]
